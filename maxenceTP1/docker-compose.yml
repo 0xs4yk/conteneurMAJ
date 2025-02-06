@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: passw0rd
+      MYSQL_DATABASE: mysql
+      MYSQL_USER: maxence
+      MYSQL_PASSWORD: passw0rd
+    networks:
+      - app
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-container
+    environment:
+      PMA_HOST: mysql-container
+    networks:
+      - app
+    ports:
+      - "8081:80"
+
+networks:
+  app:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
