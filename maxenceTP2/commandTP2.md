@@ -9,4 +9,6 @@ maxenceTP2/Dockerfile
 
 docker build -t ma_super_app .
 
+maxenceTP2/docker-compose.yml
 
+docker-compose up --build -d
