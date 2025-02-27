@@ -1,0 +1,23 @@
+1. 
+
+Installe kind : curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.21.0/kind-$(uname)-amd64
+
+2. 
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml
+
+Vérification : 
+
+kubectl wait --namespace ingress-nginx \
+  --for=condition=ready pod \
+  --selector=app.kubernetes.io/component=controller \
+  --timeout=90s
+
+output : pod/ingress-nginx-controller-5989557678-7dw8r condition met
+
+3. 
+
+k8s/TP2/schéma.png
+
+4. 
+

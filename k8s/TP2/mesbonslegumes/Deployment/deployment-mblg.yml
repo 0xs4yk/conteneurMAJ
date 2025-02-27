@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mesbonslegumes-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mesbonslegumes
+  template:
+    metadata:
+      labels:
+        app: mesbonslegumes
+    spec:
+      containers:
+      - name: mesbonslegumes
+        image: sayk/mesbonslegumes:latest
+        ports:
+        - containerPort: 80

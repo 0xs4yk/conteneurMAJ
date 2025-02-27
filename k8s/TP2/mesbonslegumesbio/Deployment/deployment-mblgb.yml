@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mesbonslegumesbio-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mesbonslegumesbio
+  template:
+    metadata:
+      labels:
+        app: mesbonslegumesbio
+    spec:
+      containers:
+      - name: mesbonslegumesbio
+        image: sayk/mesbonslegumesbio:latest
+        ports:
+        - containerPort: 80

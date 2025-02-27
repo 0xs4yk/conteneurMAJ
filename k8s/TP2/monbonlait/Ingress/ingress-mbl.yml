@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: monbonlait-ingress
+spec:
+  rules:
+  - host: "monbonlait.fr"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: monbonlait-service
+            port:
+              number: 80
