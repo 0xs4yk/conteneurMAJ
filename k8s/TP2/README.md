@@ -120,7 +120,7 @@ docker push sayk/mesbonslegumesbio:v2
 
 ### Déploiement de la nouvelle version
 ```bash
-kubectl set image deployment/mesbonslegumesbio-deployment mesbonslegumesbio=sayk/mesbonslegumesbio:v2
+kubectl set image deployment/mesbonslegumesbio-deployment mesbonslegumesbio=sayk/mesbonslegumesbio:v2.0.1
 ```
 
 ### Surveillance du déploiement
