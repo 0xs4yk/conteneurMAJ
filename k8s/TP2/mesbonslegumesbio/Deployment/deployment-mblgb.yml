@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mesbonslegumesbio
-        image: sayk/mesbonslegumesbio:latest
+        image: sayk/mesbonslegumesbio:v2
         ports:
         - containerPort: 80
         resources:

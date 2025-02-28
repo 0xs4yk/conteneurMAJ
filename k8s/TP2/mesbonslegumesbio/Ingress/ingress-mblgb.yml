@@ -4,7 +4,7 @@ metadata:
   name: mesbonslegumesbio-ingress
 spec:
   rules:
-  - host: "mesbonslegumes.fr"
+  - host: "mesbonslegumes.fr/bio"
     http:
       paths:
       - path: /bio
