@@ -4,7 +4,7 @@ Installe kind : curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.21.0/kind-$(uname
 
 2. 
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml
+kubectl apply -f ingress-nginx.yml
 
 Vérification : 
 
@@ -20,4 +20,69 @@ output : pod/ingress-nginx-controller-5989557678-7dw8r condition met
 k8s/TP2/schéma.png
 
 4. 
+
+Build de l'image
+
+docker build -t sayk/monbonlait:latest .
+docker build -t sayk/mesbonslegumes:latest .
+docker build -t sayk/mesbonslegumesbio:latest .
+
+Push de l'image sur docker hub
+
+docker build sayk/monbonlait:latest
+docker build sayk/mesbonslegumes:latest
+docker build sayk/mesbonslegumesbio:latest
+
+5. 
+
+kubectl apply -f Deployment/deployment-mbl.yml
+kubectl apply -f Service/service-mbl.yml
+kubectl apply -f Ingress/ingress-mbl.yml
+
+kubectl apply -f Deployment/deployment-mblg.yml
+kubectl apply -f Service/service-mblg.yml
+kubectl apply -f Ingress/ingress-mblg.yml
+
+kubectl apply -f Deployment/deployment-mblgb.yml
+kubectl apply -f Service/service-mblgb.yml
+kubectl apply -f Ingress/ingress-mblgb.yml
+
+6.
+
+Modification des replicas puis ajout de la gestion de ressource pour calibrer le scaling
+
+ex :
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monbonlait-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: monbonlait
+  template:
+    metadata:
+      labels:
+        app: monbonlait
+    spec:
+      containers:
+      - name: monbonlait
+        image: sayk/monbonlait:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+
+Pour vérifier la bonne répartition
+
+kubectl get pods -o wide
+
+7. 
 

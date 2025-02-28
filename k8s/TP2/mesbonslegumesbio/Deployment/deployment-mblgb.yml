@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: mesbonslegumesbio-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: mesbonslegumesbio
@@ -17,3 +17,10 @@ spec:
         image: sayk/mesbonslegumesbio:latest
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
