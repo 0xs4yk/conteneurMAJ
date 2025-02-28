@@ -103,8 +103,11 @@ spec:
 
 Pour vérifier la distribution des pods :
 ```bash
-kubectl get pods -o wide
+while true; do curl -H "Host: monbonlait.fr" http://localhost:8080; sleep 0.1; done
 ```
+Puis vérification sur chaque pod avec 
+
+k logs "nom du pod"
 
 ## 7. Mise à jour d'une application (Rolling Update)
 
