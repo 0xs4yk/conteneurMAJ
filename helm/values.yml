@@ -1,0 +1,30 @@
+nextcloud:
+  host: nextcloud.local
+  username: admin
+  password: passw0rd
+  persistence:
+    enabled: true
+    storageClass: standard
+
+  database:
+    type: postgresql
+
+mariadb:
+  enabled: false
+
+externalDatabase:
+  enabled: true
+  type: postgresql
+  host: postgresql-service.default.svc.cluster.local
+  database: nextcloud
+  user: nextcloud
+  password: passw0rd
+
+postgresql:
+  enabled: true
+  global:
+    postgresql:
+      auth:
+        username: nextcloud
+        password: passw0rd
+        database: nextcloud
