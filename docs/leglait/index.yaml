@@ -3,12 +3,12 @@ entries:
   leglait:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-03-21T15:10:04.958187698+01:00"
+    created: "2025-03-21T15:42:34.109154969+01:00"
     description: A Helm chart for Kubernetes
-    digest: 68919ae3516d462aadb37cc8ef17cdffcd985db96a005498834a36f89a7fd97f
+    digest: 278cc47d1ce3fb22b3ac466fc20d4b5d77d377333346486ef5004990722352a8
     name: leglait
     type: application
     urls:
     - leglait-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-21T15:10:04.952954286+01:00"
+generated: "2025-03-21T15:42:34.103299159+01:00"
