@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: curl-job
+  namespace: curling
+spec:
+  template:
+    metadata:
+      labels:
+        app: curl-job
+    spec:
+      containers:
+      - name: curl
+        image: curlimages/curl
+        command: ["sh", "-c"]
+        args:
+        - |
+          NGINX_POD=$(kubectl get pods -n webbis -l app=nginx -o jsonpath='{.items[0].metadata.name}')
+          echo "Curling Nginx pod in Webbis namespace:"
+          kubectl exec -n webbis $NGINX_POD -- wget -O- localhost:80
+      serviceAccountName: curl-sa
+      restartPolicy: Never

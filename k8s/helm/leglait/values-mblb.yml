@@ -1,0 +1,31 @@
+replicaCount: 3
+
+image:
+  repository: sayk/mesbonslegumes
+  pullPolicy: IfNotPresent
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: ""
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  hosts:
+    - host: mesbonslegumes.fr
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "200m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"

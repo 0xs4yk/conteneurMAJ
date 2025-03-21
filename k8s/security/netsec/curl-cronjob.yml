@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: curl-cronjob
+  namespace: curling
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: curl-cronjob
+        spec:
+          containers:
+          - name: curl
+            image: curlimages/curl
+            command: ["sh", "-c"]
+            args:
+            - |
+              NGINX_POD=$(kubectl get pods -n webbis -l app=nginx -o jsonpath='{.items[0].metadata.name}')
+              echo "Attempting to curl Nginx pod in Webbis namespace:"
+              kubectl exec -n webbis $NGINX_POD -- wget -O- localhost:80
+              echo "Listing pods in Webbis namespace:"
+              kubectl get pods -n webbis
+          serviceAccountName: curl-sa
+          restartPolicy: Never
